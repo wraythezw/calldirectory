@@ -6,15 +6,22 @@ var app		= express();
 const NodeCache = require( "node-cache" );
 const myCache = new NodeCache();
 
-
+// node start.js host user password database
 var connection	= mysql.createConnection({
+	connectionLimit	: 100,
+ 	host		: process.argv[2],
+	user		: process.argv[3],
+	password	: process.argv[4],
+	database	: process.argv[5]
+});
+/*var connection	= mysql.createConnection({
 	connectionLimit	: 100,
  	host		: '192.168.122.182',
 	user		: 'root',
 	password	: 'jammers32',
 	database	: 'asterisk'
 });
-
+*/
 function update_db(){
  connection.connect(function(err){
   if(!err){
